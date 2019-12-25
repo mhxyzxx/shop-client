@@ -311,11 +311,26 @@
 
 <script>
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 export default {
   components: {
     HeaderTop
+  },
+  mounted () {
+    /* eslint-disable no-new */
+    // 创建一个Swiper对象，来实现轮播
+    new Swiper('.swiper-container', {
+      loop: true, // 循环模式选项
+
+      // 如果需要分页器
+      pagination: {
+        el: '.swiper-pagination'
+      }
+    })
   }
 }
+
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

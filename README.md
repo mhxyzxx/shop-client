@@ -90,6 +90,39 @@ export default {
 </HeaderTop>
 ```
 
+### 4.1 首页-轮播swiper的使用
+
+[swiper官网api](https://www.swiper.com.cn/usage/index.html) 
+
+```js
+# 先下载安装npm i swiper
+<script>
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+// 局部引入swiper
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
+
+export default {
+  components: {
+    HeaderTop
+  },
+  mounted () {
+    /* eslint-disable no-new */
+    // 创建一个Swiper对象，来实现轮播
+    new Swiper('.swiper-container', {
+      loop: true, // 循环模式选项
+
+      // 如果需要分页器
+      pagination: {
+        el: '.swiper-pagination'
+      }
+    })
+  }
+}
+
+</script>
+```
+
 
 
 ## 5. 登陆路由组件
