@@ -46,12 +46,54 @@ export default {
 
 
 
-## 4. 抽取组件
+## 4. 抽取公共头部组件
 
-    头部组件: HeaderTop, 通过slot来实现组件通信标签结构
-    商家列表组件: ShopList
+**插槽和props使用的场景：** 当我们的固定顶部导航整体样式一样，但里面的内容不一样。当我们在切换底部导航，渲染不同的页面。导航都是不一样的。此时，我们会把顶部导航放在各个路由组件的里面。因为四个导航的顶部只是内容不一样。此时，考虑把导航组件单独提取出来。使用slot插槽来传递标签和props属性来传递值来实现。如下：
+
+1. 头部组件: HeaderTop, 通过slot来实现组件通信标签结构
+2. 使用slot插槽来传递标签和props属性来传递值
+
+`HeaderTop.vue`
+
+```html
+<template>
+  <header class="header">
+    <slot name="left"></slot>
+    <span class="header_title">
+      <span class="header_title_text ellipsis">{{ title }}</span>
+    </span>
+    <slot name="right"></slot>
+  </header>
+</template>
+
+<script>
+
+export default {
+  props: {
+    title: String
+  }
+}
+</script>
+```
+
+`MSite.vue`
+
+```html
+<!--首页头部-->
+<HeaderTop title="昌平区北七家宏福科技园(337省道北)">
+    <span class="header_search" slot="left">
+        <i class="iconfont icon-sousuo"></i>
+    </span>
+    <span class="header_login" slot="right">
+        <span class="header_login_text">登录|注册</span>
+    </span>
+</HeaderTop>
+```
+
+
 
 ## 5. 登陆路由组件
+
      静态组件
      FooterGuide的显示/隐藏: 通过路由的meta
 
