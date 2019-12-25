@@ -22,14 +22,39 @@
     底部导航组件: FooterGuide
     导航路由组件: Msite/Search/Order/Profile
 
+### 3.1 tabbar激活样式
+
+```html
+<a href="javascript:;" class="guide_item" :class="{on: '/msite' === $route.path}" @click.prevent="goTo('/msite')">
+    <span class="item_icon">
+        <i class="iconfont icon-waimai"></i>
+    </span>
+    <span>外卖</span>
+</a>
+<script>
+export default {
+  name: 'FooterGuide',
+  methods: {
+    goTo (path) {
+      this.$router.replace(path)
+    }
+  }
+}
+</script>
+
+```
+
+
+
 ## 4. 抽取组件
+
     头部组件: HeaderTop, 通过slot来实现组件通信标签结构
     商家列表组件: ShopList
-    
+
 ## 5. 登陆路由组件
      静态组件
      FooterGuide的显示/隐藏: 通过路由的meta
-     
+
 ## 6. 后台项目
     启动后台项目: 理解前后台分离
     测试后台接口: 使用postman
@@ -70,14 +95,14 @@
         使用Swiper显示轮播, 如何在界面更新之后创建Swiper对象?
             1). 使用回调+$nextTick()
             2). 使用watch+$nextTick()	
-    		
+
 ## 2. 登陆/注册: 界面相关效果
     a. 切换登陆方式
     b. 手机号合法检查
     c. 倒计时效果
     d. 切换显示或隐藏密码
     g. 前台验证提示
-    
+
 ## 3. 前后台交互相关问题
     1). 如何查看你的应用是否发送某个ajax请求?  
         浏览器的network
@@ -88,7 +113,7 @@
     3). 后台返回了数据, 但页面没有显示?
         vuex中是否有
         组件中是否读取
-        
+
 # day03
 ## 1. 完成登陆/注册功能
     1). 2种方式
@@ -108,7 +133,7 @@
        使用vue的chrome插件查看vuex中的state和组件中的数据
        使用debugger语句调试代码
        实参类型与形参类型的匹配问题
-       
+
 ## 2. 搭建商家整体界面
     1). 拆分界面路由
     2). 路由的定义/配置|使用
@@ -117,7 +142,7 @@
     1). 前后台分离的理解
     2). mockjs的理解和使用
     3). jons数据设计的理解
-     
+
 ## 4. ShopHeader组件
     1). 异步显示数据效果的编码流程
         ajax
@@ -140,7 +165,7 @@
         情况2: Cannot read property 'xxx' of null"
      
     3). vue transition动画
-    
+
 # day04
 ## 1. ShopGoods组件
     1). 动态展现列表数据
@@ -169,14 +194,14 @@
             2). 列表第一次显示后, 收集tops
             3). 实现currentIndex的计算逻辑
     4). 点击左侧列表项, 右侧滑动到对应位置
-    
+
 ## 2. CartControl组件
     1). 问题: 更新状态数据, 对应的界面不变化
         原因: 一般方法给一个已有绑定的对象中添加一个新的属性, 这个属性没有数据绑定
         解决: 
             Vue.set(obj, 'xxx', value)才有数据绑定
             this.$set(obj, 'xxx', value)才有数据绑定
-            
+
 ## 3. ShopCart组件
     1). 使用vuex管理购物项数据: cartFoods
     2). 解决几个功能性bug
@@ -190,12 +215,12 @@
 ## 1. ShopRatings组件
     1). 列表的过滤显示
     2). 自定义过滤器
-    
+
 ## 2. ShopInfo组件
     1). 使用better-scroll实现两个方向的滑动
     1). 通过JS动态操作样式
     2). 解决当前路由刷新异常的bug
-    
+
 ## 3. Search组件
     1). 根据关键字来异步搜索显示匹配的商家列表
     2). 如实实现没有搜索结果的提示显示
