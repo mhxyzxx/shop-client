@@ -131,10 +131,22 @@ export default {
 
 ## 5. 登陆路由组件
 
-     静态组件
-     FooterGuide的显示/隐藏: 通过路由的meta
+```js
+ 静态组件
+ FooterGuide的显示/隐藏: 通过路由的meta
+ # meta这个属性值默认就有，如果不指定就是空对象。空对象去取属性值就是false
+ <FooterGuide v-show="$route.meta.showFooter"></FooterGuide>
+ 
+ 登录组件左上角返回按钮，可使用$route.back方法返回是上一页，如下：
+<a href="javascript:" class="go_back" @click="$router.back()">
+    <i class="iconfont icon-jiantou2"></i>
+</a>
+```
+
+
 
 ## 6. 后台项目
+
     启动后台项目: 理解前后台分离
     测试后台接口: 使用postman
     修正接口文档
