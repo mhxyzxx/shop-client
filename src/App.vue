@@ -8,17 +8,20 @@
 
 <script>
 import FooterGuide from '@/components/FooterGuide/FooterGuide.vue'
-
+import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
     FooterGuide
   },
   mounted () {
-    this.$store.dispatch('getAddress')
+    // 第一种方法：
+    // this.$store.dispatch('getAddress')
+    // 第二种方法：使用mapActions映射函数
+    this.getAddress()
   },
   methods: {
-
+    ...mapActions(['getAddress'])
   }
 }
 </script>

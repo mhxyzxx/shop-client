@@ -1,7 +1,7 @@
 <template>
   <section class="msite">
     <!--首页头部-->
-    <HeaderTop title="昌平区北七家宏福科技园(337省道北)">
+    <HeaderTop :title="address.name">
       <span class="header_search" slot="left">
         <i class="iconfont icon-sousuo"></i>
       </span>
@@ -136,10 +136,14 @@ import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
 import ShopList from '../../components/ShopList/ShopList.vue'
+import { mapState } from 'vuex'
 export default {
   components: {
     HeaderTop,
     ShopList
+  },
+  computed: {
+    ...mapState(['address'])
   },
   mounted () {
     /* eslint-disable no-new */
