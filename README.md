@@ -160,33 +160,37 @@ export default {
 
 # day02
 ## 1. 异步数据的总结
-    封装ajax: 
-        promise+axios封装ajax请求的函数
-        封装每个接口对应的请求函数(能根据接口定义ajax请求函数)
-        解决ajax的跨越域问题: 配置代理, 对代理的理解
-    vuex编码
-        创建所有相关的模块: store/index|state|mutations|actions|getters|mutation-types
-        设计state: 从后台获取的数据
-        实现actions: 
-            定义异步action: async/await
-            流程:　发ajax获取数据, commit给mutation
-        实现mutations: 给状态赋值
-        实现index: 创建store对象
-        main.js: 配置store
-    组件异步显示数据
-        在mounted()通过$store.dispatch('actionName')来异步获取后台数据到state中
-        mapState(['xxx'])读取state中数据到组件中
-        在模板中显示xxx的数据
-    模板中显示数据的来源
-        data: 自身的数据(内部改变)
-        props: 外部传入的数据(外部改变)
-        computed: 根据data/props/别的compute/state/getters
-    异步显示轮播图
-        通过vuex获取foodCategorys数组(发请求, 读取)
-        对数据进行整合计算(一维变为特定的二维数组)
-        使用Swiper显示轮播, 如何在界面更新之后创建Swiper对象?
-            1). 使用回调+$nextTick()
-            2). 使用watch+$nextTick()	
+```js
+# 定位和重新选择位置：都是因为确定经纬度的。
+# mutation-types是写mutation和actions进行交互的常量模块
+封装ajax: 
+    promise+axios封装ajax请求的函数
+    封装每个接口对应的请求函数(能根据接口定义ajax请求函数)
+    解决ajax的跨越域问题: 配置代理, 对代理的理解
+vuex编码
+    创建所有相关的模块: store/index|state|mutations|actions|getters|mutation-types
+    设计state: 从后台获取的数据
+    实现actions: 
+        定义异步action: async/await
+        流程:　发ajax获取数据, commit给mutation
+    实现mutations: 给状态赋值
+    实现index: 创建store对象
+    main.js: 配置store
+组件异步显示数据
+    在mounted()通过$store.dispatch('actionName')来异步获取后台数据到state中
+    mapState(['xxx'])读取state中数据到组件中
+    在模板中显示xxx的数据
+模板中显示数据的来源
+    data: 自身的数据(内部改变)
+    props: 外部传入的数据(外部改变)
+    computed: 根据data/props/别的compute/state/getters
+异步显示轮播图
+    通过vuex获取foodCategorys数组(发请求, 读取)
+    对数据进行整合计算(一维变为特定的二维数组)
+    使用Swiper显示轮播, 如何在界面更新之后创建Swiper对象?
+        1). 使用回调+$nextTick()
+        2). 使用watch+$nextTick()	
+```
 
 ### 1.1 封装ajax请求的函数
 
@@ -292,6 +296,24 @@ export const reqShopGoods = () => ajax('/goods')
 >
 > 1. 服务器告诉浏览器，你允许我跨域；
 > 2. 客户端蒙蔽浏览器，让浏览器觉的它没有跨域，但实际上跨域了；
+
+`config/index.js` 
+
+```js
+proxyTable: {
+      '/api': { // 匹配所有以 '/api'开头的请求路径
+        target: 'http://localhost:4000', // 代理目标的基础路径
+        changeOrigin: true, // 支持跨域
+        pathRewrite: {// 重写路径: 去掉路径中开头的'/api'
+          '^/api': ''
+        }
+      }
+    },
+```
+
+### 1.4 创建vuex的整体结构
+
+> 
 
 ## 2. 登浏览器陆/注册: 界面相关效果
 
