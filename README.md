@@ -163,6 +163,7 @@ export default {
 ```js
 # 定位和重新选择位置：都是因为确定经纬度的。
 # mutation-types是写mutation和actions进行交互的常量模块
+# 思考：actions和mutation进行交互时，传的是什么？传的是包含数据的对象。
 封装ajax: 
     promise+axios封装ajax请求的函数
     封装每个接口对应的请求函数(能根据接口定义ajax请求函数)
