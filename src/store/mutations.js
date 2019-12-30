@@ -8,7 +8,11 @@ import {
 } from './mutation-types'
 
 export default {
-  [RECEIVE_ADDRESS] (state, {address}) {
+  // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名,见官方文档
+  // 参考：http://www.mamicode.com/info-detail-2855033.html
+  // https://www.cnblogs.com/oneboi/p/7595102.html
+
+  [RECEIVE_ADDRESS] (state, address) {
     state.address = address
   },
   [RECEIVE_CATEGORYS] (state, {categorys}) {

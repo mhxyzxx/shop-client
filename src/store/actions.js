@@ -21,7 +21,10 @@ export default {
     // 提交一个mutation
     if (result.code === 0) {
       const address = result.data
-      commit(RECEIVE_ADDRESS, {address})
+      // console.log(address)
+      // actions和mutations交互时候，传递的是一个包含数据的对象。这个对象包含不同数据。
+      // 第二个参数address是直接传递对象名，因此接收到的是object。
+      commit(RECEIVE_ADDRESS, address)
     }
   },
 
@@ -29,6 +32,7 @@ export default {
   async getCategorys ({commit}) {
     // 发送异步ajax请求
     const result = await reqFoodCategorys()
+    // console.log(result)
     // 提交一个mutation
     if (result.code === 0) {
       const categorys = result.data

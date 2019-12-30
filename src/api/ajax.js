@@ -10,6 +10,8 @@ export default function ajax (url, data = {}, type = 'GET') {
     if (type === 'GET') {
       // 准备url query参数数据
       let dataStr = '' // 数据拼接字符串
+      // forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数。
+      // 注意: forEach() 对于空数组是不会执行回调函数的。
       Object.keys(data).forEach(key => {
         dataStr += key + '=' + data[key] + '&'
       })
