@@ -12,8 +12,8 @@
         <form>
           <div :class="{on: loginWay}">
             <section class="login_message">
-              <input type="tel" maxlength="11" placeholder="手机号">
-              <button disabled="disabled" class="get_verification">获取验证码</button>
+              <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
+              <button disabled="disabled" class="get_verification" :class="{right_phone: rightPhone}">获取验证码</button>
             </section>
             <section class="login_verification">
               <input type="tel" maxlength="8" placeholder="验证码">
@@ -57,7 +57,14 @@
 export default {
   data () {
     return {
-      loginWay: true // true代表短信登陆, false代表密码
+      loginWay: true, // true代表短信登陆, false代表密码
+      phone: '' // 手机号
+    }
+  },
+  // 模板中要使用的几个变量的来源：props,data,计算属性，经分析，这里应该使用计算属性
+  computed: {
+    rightPhone () { // 把用户输入的手机号跟正则进行匹配，匹配成功则返回true
+      return /^1\d{10}$/.test(this.phone)
     }
   },
   methods: {
@@ -147,7 +154,11 @@ export default {
               color: #ccc;
               font-size: 14px;
               background: transparent;
+              &.right_phone {
+                color: black;
+              }
             }
+
           }
 
           .login_verification {
