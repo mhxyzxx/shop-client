@@ -45,6 +45,7 @@ export default {
     // 发送异步ajax请求
     const {longitude, latitude} = state
     const result = await reqShops(longitude, latitude)
+    console.log(result)
     // 提交一个mutation
     if (result.code === 0) {
       const shops = result.data
