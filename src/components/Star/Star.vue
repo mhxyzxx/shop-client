@@ -18,6 +18,10 @@ export default {
 
   computed: {
     /*
+    >=0.5才是half半个
+    3: 代表on
+    0: 代表half
+    2: 代表off
       3.2: 3 + 0 + 2
       3.5: 3 + 1 + 1
        */
@@ -30,14 +34,15 @@ export default {
         scs.push(CLASS_ON)
       }
       // 向scs中添加0/1个CLASS_HALF
+      // >=0.5才是half半个，这里为了精确，扩大了10倍后相减
       if (score * 10 - scoreInteger * 10 >= 5) {
         scs.push(CLASS_HALF)
       }
       // 向scs中添加n个CLASS_OFF
+      // 这里当scs.length的长度等于5时，就退出循环了，因为scs数组的长度最大为5，当长度等于5，就不能往里面添加了
       while (scs.length < 5) {
         scs.push(CLASS_OFF)
       }
-
       return scs
     }
   }
