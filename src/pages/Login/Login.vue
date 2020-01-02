@@ -13,7 +13,9 @@
           <div :class="{on: loginWay}">
             <section class="login_message">
               <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
-              <button disabled="disabled" class="get_verification" :class="{right_phone: rightPhone}">获取验证码</button>
+              <button :disabled="!rightPhone" class="get_verification" :class="{right_phone: rightPhone}" @click.prevent="getCode">
+                {{computeTime>0 ? `已发送(${computeTime}s)` : '获取验证码'}}
+              </button>
             </section>
             <section class="login_verification">
               <input type="tel" maxlength="8" placeholder="验证码">
@@ -58,7 +60,8 @@ export default {
   data () {
     return {
       loginWay: true, // true代表短信登陆, false代表密码
-      phone: '' // 手机号
+      phone: '', // 手机号
+      computeTime: 0 // 计时的时间
     }
   },
   // 模板中要使用的几个变量的来源：props,data,计算属性，经分析，这里应该使用计算属性
@@ -68,6 +71,20 @@ export default {
     }
   },
   methods: {
+    getCode () {
+      // 如果当前没有计时，才让它启动定时器
+      if (!this.computeTime) {
+        // 启动倒计时
+        this.computeTime = 60
+        const interval = setInterval(() => {
+          this.computeTime--
+          if (this.computeTime <= 0) {
+            // 停止计时器
+            clearInterval(interval)
+          }
+        }, 1000)
+      }
+    }
   }
 }
 </script>
